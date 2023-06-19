@@ -1,0 +1,27 @@
+# Fichiers spécifiques au client
+/client/node_modules
+/client/build
+/client/dist
+
+# Fichiers spécifiques au serveur
+/server/node_modules
+/server/build
+/server/dist
+
+# Fichiers spécifiques à Node.js
+/node_modules
+/.pnp
+.pnp.js
+
+# Fichiers de configuration
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+
+# Dossiers de cache
+/.pnp/
+/.pnp/
+
+# Fichiers temporaires
+.DS_Store
