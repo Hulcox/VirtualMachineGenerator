@@ -96,7 +96,7 @@ const DetailTable = ({ litle }) => {
                     "minutes",
                   ]).minutes > 0
                     ? "En cours d'execution"
-                    : "supprimer"}
+                    : "supprimé"}
                 </div>
               </td>
             </tr>
