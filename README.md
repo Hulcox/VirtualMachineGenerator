@@ -87,3 +87,18 @@ The application is composed of the following files and folders:
 - `azure.js`: Contains the code related to VM creation.
 - `tools/token.js`: Contains the code to generate tokens for authentication.
 - `src/database/astrocloud.db`: Contains all the users and machines of the application (SQLite database).
+- 
+### 4.3. DataBase (exemple data) 🔐
+- table users :
+
+|   | id | name        | credit  | email                 | password       |
+|:--|:---|:------------|:--------|:----------------------|:---------------|
+| 1 | 1  | JohnDoe     | 100     | johndoe@anonimus.test | johndoethebest |
+  
+- table machine :
+
+|   | id | name        | uptime      | active  | created_at         | id_user |
+|:--|:---|:------------|:------------|:--------|:-------------------|:--------|
+| 1 | 1  | 192.168.0.1 | 10 (minute) | true    | 15/07/2023T18:52:00| 1       |
+  
+
