@@ -39,6 +39,22 @@ npm run start
 ```
 
 **⚠️ IMPORTANT: if you have an error try to install in folder server tr46 `npm install tr46@latest` ⚠️**
+after do this folowing commande if never change
+```
+cd /server
+npm cache clean --force
+rm -rf node_modules
+rm -rf package-lock.json
+npm install
+
+and
+
+cd /client
+npm cache clean --force
+rm -rf node_modules
+rm -rf package-lock.json
+npm install
+```
 
 When you see "Server Front started" and "Server Back started" in blue in the terminal, you can open [http://localhost:3000](http://localhost:3000) to view the application in your browser.<br>
 
