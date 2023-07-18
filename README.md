@@ -76,7 +76,7 @@ You can use these credentials to login to the application, and you can modify th
 
 Once logged in, you will be redirected to the dashboard.<br>
 
-You can create a VM by clicking on the "Create VM" button.<br>
+You can create a VM by clicking on the "Crée une machine" button.<br>
 
 After creating a VM, the VM will be added to the VM list and will be deleted after 10 minutes.<br>
 
