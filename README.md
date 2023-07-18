@@ -62,6 +62,8 @@ You can create a VM by clicking on the "Create VM" button.<br>
 
 After creating a VM, the VM will be added to the VM list and will be deleted after 10 minutes.<br>
 
+to connect to the vm use this `user: AstroCloudAdmin` and this `password: AstroCloud%SDV//`.<br>
+
 ## 4. Application Structure 🗂️
 
 The application is composed of the following files and folders:
