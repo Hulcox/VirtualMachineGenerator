@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const DetailTable = ({ litle }) => {
   const [vm, setVm] = useState([]);
 
+  // get all machine by user to show information in tab
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("astrocloud-user"));
 

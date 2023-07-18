@@ -5,7 +5,6 @@ import "dotenv/config";
 
 const route = ({ app, db }) => {
   app.post("/api/login", async (req, res) => {
-    console.log(req.body);
     db.get(
       "SELECT * FROM users WHERE email = ?",
       [req.body.email],
@@ -17,7 +16,6 @@ const route = ({ app, db }) => {
           );
           res.status(500).send("Erreur du serveur");
         } else {
-          console.log(rows);
           if (!rows) {
             res.status(404).send("Pas d'utilisateur");
           } else {
@@ -78,8 +76,6 @@ const route = ({ app, db }) => {
 
       StartAndStopAzureVm(publisher, offer, sku)
         .then((result) => {
-          console.log(result);
-
           const insert = db.prepare(
             "INSERT INTO machine (name, uptime, active, created_at, id_user) VALUES (?, ?, ?, ?, ?)"
           );
@@ -95,7 +91,6 @@ const route = ({ app, db }) => {
           res.status(200).send(result);
         })
         .catch((error) => {
-          console.log(error);
           res.sendStatus(400);
         });
     } catch (error) {

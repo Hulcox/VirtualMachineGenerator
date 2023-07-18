@@ -10,7 +10,7 @@ const CreatePage = () => {
   const [selectedVm, setSelectedVm] = useState(null);
   const [result, setResult] = useState(null);
   const router = useRouter();
-  //check auth
+  //check if user are auth else redirect to login page
   useEffect(() => {
     const token = localStorage.getItem("astrocloud-token");
     if (token) {
@@ -18,22 +18,20 @@ const CreatePage = () => {
         (response) => {
           if (response.ok) {
             setIsAuth(true);
-            console.log("all is ok");
             setUser(JSON.parse(localStorage.getItem("astrocloud-user")));
           } else if (response.status === 400) {
             localStorage.removeItem("astrocloud-token");
             router.push("/login");
-            console.log("logout");
           }
         }
       );
     } else {
-      console.log("logout");
       router.push("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // use fetch to do request for starting vm, request is a promise to now when the vm are realy started and to show information after
   const formik = useFormik({
     initialValues: {
       vm: "",
@@ -42,6 +40,7 @@ const CreatePage = () => {
       let data = null;
       setSelectedVm(null);
       setResult(null);
+      // use switch methode to get the correct information for the request
       switch (values.vm) {
         case "ubuntu":
           setSelectedVm("Ubuntu");
@@ -90,8 +89,6 @@ const CreatePage = () => {
           break;
       }
 
-      console.log(values.vm, data);
-
       if (data) {
         setLoading(true);
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/createVm`, {
@@ -113,7 +110,6 @@ const CreatePage = () => {
           })
           .then((data) => {
             if (data) {
-              console.log(data);
               setResult(data);
               setLoading(false);
             }

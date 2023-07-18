@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const MachinePage = () => {
   const [isAuth, setIsAuth] = useState(false);
   const router = useRouter();
-  //check auth
+  //check if user are auth else redirect to login page
   useEffect(() => {
     const token = localStorage.getItem("astrocloud-token");
     if (token) {
@@ -14,16 +14,13 @@ const MachinePage = () => {
         (response) => {
           if (response.ok) {
             setIsAuth(true);
-            console.log("all is ok");
           } else if (response.status === 400) {
             localStorage.removeItem("astrocloud-token");
             router.push("/login");
-            console.log("logout");
           }
         }
       );
     } else {
-      console.log("logout");
       router.push("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

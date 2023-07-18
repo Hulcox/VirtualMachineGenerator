@@ -28,6 +28,7 @@ const LoginPage = () => {
     },
     validationSchema: LoginSchema,
     onSubmit: (values, { setSubmitting }) => {
+      // use fetch for http request
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
         method: "POST",
         headers: {
@@ -48,7 +49,7 @@ const LoginPage = () => {
         })
         .then((data) => {
           if (data) {
-            console.log(data);
+            //store information like token and user
             localStorage.setItem("astrocloud-token", data.token);
             localStorage.setItem("astrocloud-user", JSON.stringify(data.user));
             router.push("/");
@@ -60,6 +61,7 @@ const LoginPage = () => {
     },
   });
 
+  // form login to connect into dashboard
   return (
     <main className="min-h-screen  bg-base-100">
       <Image

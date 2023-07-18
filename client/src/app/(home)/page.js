@@ -14,7 +14,7 @@ export default function Home() {
   const [vm, setVm] = useState([]);
 
   const router = useRouter();
-  //check auth
+  //check if user are auth else redirect to login page
   useEffect(() => {
     const token = localStorage.getItem("astrocloud-token");
     if (token) {
@@ -23,21 +23,19 @@ export default function Home() {
           if (response.ok) {
             setIsAuth(true);
             setUser(JSON.parse(localStorage.getItem("astrocloud-user")));
-            console.log("all is ok");
           } else if (response.status === 400) {
             localStorage.removeItem("astrocloud-token");
             router.push("/login");
-            console.log("logout");
           }
         }
       );
     } else {
-      console.log("logout");
       router.push("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // get all machine by user with fetch to show the statistic
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("astrocloud-user"));
 

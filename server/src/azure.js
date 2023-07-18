@@ -53,7 +53,7 @@ export const StartAndStopAzureVm = (publisher, offer, sku) => {
   let domainId = generateId("domain");
   let osDiskId = generateId("os-disk");
 
-  console.log(resourceGroupId, storageAccountId);
+  // generate resource group, storage, network interface and after virtual machine
 
   const createVirtualMachine = async () => {
     try {
@@ -110,14 +110,14 @@ export const StartAndStopAzureVm = (publisher, offer, sku) => {
       throw new Error(error.message);
     }
   };
-
+  // fonction to generate resource group
   const createResource = async () => {
     await resource.resourceGroups.createOrUpdate(resourceGroupId, {
       location: location,
       tags: { sampletag: "sampleValue" },
     });
   };
-
+  // fonction to generate rstorage
   const createStorage = async () => {
     await storage.storageAccounts.beginCreateAndWait(
       resourceGroupId,
@@ -134,7 +134,7 @@ export const StartAndStopAzureVm = (publisher, offer, sku) => {
       }
     );
   };
-
+  // fonction to generate network interface
   const createNetWork = async () => {
     await network.virtualNetworks.beginCreateOrUpdateAndWait(
       resourceGroupId,
@@ -196,7 +196,7 @@ export const StartAndStopAzureVm = (publisher, offer, sku) => {
       { top: 1 }
     );
   };
-
+  // fonction to get ip adress of the new virtual machine
   const getIpAdress = async () => {
     try {
       const vmInfo = await compute.virtualMachines.get(resourceGroupId, vmId);
@@ -217,7 +217,6 @@ export const StartAndStopAzureVm = (publisher, offer, sku) => {
 
       const ipAddress = publicIPAddress.ipAddress;
 
-      console.log("Adresse IP publique de la machine virtuelle : " + ipAddress);
       return ipAddress;
     } catch (error) {
       console.error(
@@ -231,16 +230,15 @@ export const StartAndStopAzureVm = (publisher, offer, sku) => {
   return new Promise(async (resolve) => {
     createVirtualMachine()
       .then(async (res) => {
+        // start the vm
         await compute.virtualMachines.beginStart(resourceGroupId, vmId);
+        // get and show ip
         const ip = await getIpAdress();
-        console.log(ip);
-
+        // delete vm after deleting time
         const deletTime = DateTime.now().plus({ minute: 2 }).toISO();
-        console.log("La machine virtuel vas s'arreter à : " + deletTime);
 
         setTimeout(async () => {
           await compute.virtualMachines.beginStart(resourceGroupId, vmId);
-          console.log("deleting : " + resourceGroupId);
           await resource.resourceGroups.beginDeleteAndWait(resourceGroupId);
         }, Number(process.env.DELETE_TIME));
 
