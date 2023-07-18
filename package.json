@@ -1,0 +1,20 @@
+{
+  "name": "astrocloud",
+  "version": "1.0.0",
+  "description": "generator of azure vm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hulcox/VirtualMachineGenerator.git"
+  },
+  "author": "Romain Bidault",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hulcox/VirtualMachineGenerator/issues"
+  },
+  "homepage": "https://github.com/Hulcox/VirtualMachineGenerator#readme"
+}
