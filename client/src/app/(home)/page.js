@@ -39,7 +39,7 @@ export default function Home() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("astrocloud-user"));
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/allMachine/${user.id}`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/allMachine/${user?.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

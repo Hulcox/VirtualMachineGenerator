@@ -8,12 +8,9 @@ import sqlite3 from "sqlite3";
 const app = express();
 const port = process.env.SERVER_PORT;
 
-app.options(
-  "*",
-  cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 })
-);
+app.options("*", cors({ origin: "*", optionsSuccessStatus: 200 }));
 
-app.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 }));
+app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
 app.use(morgan("dev"));
 app.use(express.json());
 
