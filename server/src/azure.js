@@ -235,7 +235,9 @@ export const StartAndStopAzureVm = (publisher, offer, sku) => {
         // get and show ip
         const ip = await getIpAdress();
         // delete vm after deleting time
-        const deletTime = DateTime.now().plus({ minute: 2 }).toISO();
+        const deletTime = DateTime.now()
+          .plus({ milliseconds: process.env.DELETE_TIME })
+          .toISO();
 
         setTimeout(async () => {
           await compute.virtualMachines.beginStart(resourceGroupId, vmId);
